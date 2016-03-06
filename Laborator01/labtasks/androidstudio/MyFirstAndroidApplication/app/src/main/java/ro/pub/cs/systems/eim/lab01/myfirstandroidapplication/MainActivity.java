@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
 
     private class ButtonClickListener implements Button.OnClickListener {
-        
+
         @Override
         public void onClick(View view) {
             EditText userNameEditText = (EditText)findViewById(R.id.user_name_edit_text);
