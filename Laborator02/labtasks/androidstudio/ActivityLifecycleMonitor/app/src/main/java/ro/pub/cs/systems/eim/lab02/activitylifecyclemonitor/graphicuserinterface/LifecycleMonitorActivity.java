@@ -131,4 +131,34 @@ public class LifecycleMonitorActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        CheckBox checkBox = (CheckBox)findViewById(R.id.remember_me_checkbox);
+        EditText userNameText = (EditText)findViewById(R.id.username_edit_text);
+        EditText passwordText = (EditText)findViewById(R.id.password_edit_text);
+
+        if(checkBox.isChecked()) {
+            savedInstanceState.putString(Constants.USERNAME_EDIT_TEXT, userNameText.getText().toString());
+            savedInstanceState.putString(Constants.PASSWORD_EDIT_TEXT, passwordText.getText().toString());
+            savedInstanceState.putBoolean(Constants.REMEMBER_ME_CHECKBOX, true);
+        }
+    }
+
+    public void onRestoreInstance(Bundle savedInstance) {
+        super.onRestoreInstanceState(savedInstance);
+
+        CheckBox checkBox = (CheckBox)findViewById(R.id.remember_me_checkbox);
+        EditText userNameText = (EditText)findViewById(R.id.username_edit_text);
+        EditText passwordText = (EditText)findViewById(R.id.password_edit_text);
+
+        if(savedInstance != null) {
+            if(savedInstance.getBoolean(Constants.REMEMBER_ME_CHECKBOX) == true){
+                userNameText.setText(savedInstance.getString(Constants.USERNAME_EDIT_TEXT));
+                passwordText.setText(savedInstance.getString(Constants.PASSWORD_EDIT_TEXT));
+                checkBox.setChecked(true);
+            }
+        }
+    }
 }

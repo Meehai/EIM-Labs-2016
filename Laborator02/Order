@@ -1,0 +1,10 @@
+Home -> pause, stop |  restart, start, resume
+Back -> pause, stop, destroy | create, start, resume 
+Ok -> nimic (??)
+Home (mai lung) 
+	-> daca exista app recente si accept pause, stop | restart, start, resume
+	-> daca nu exista, nimic (??)
+Apel telefonic -> TODO
+Rotire ecran -> pause, stop, destroy, create (saved), start, resume
+
+SaveEnabled = true in content_lifecycle_monitor.xml
