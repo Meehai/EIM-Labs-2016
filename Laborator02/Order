@@ -8,3 +8,4 @@ Apel telefonic -> TODO
 Rotire ecran -> pause, stop, destroy, create (saved), start, resume
 
 SaveEnabled = true in content_lifecycle_monitor.xml
+Home -> pause, stop |  restart, start, resume

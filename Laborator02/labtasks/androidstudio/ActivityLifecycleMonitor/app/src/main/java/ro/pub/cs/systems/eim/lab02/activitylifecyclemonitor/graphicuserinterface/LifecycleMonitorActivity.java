@@ -146,7 +146,7 @@ public class LifecycleMonitorActivity extends Activity {
         }
     }
 
-    public void onRestoreInstance(Bundle savedInstance) {
+    public void onRestoreInstanceState(Bundle savedInstance) {
         super.onRestoreInstanceState(savedInstance);
 
         CheckBox checkBox = (CheckBox)findViewById(R.id.remember_me_checkbox);
