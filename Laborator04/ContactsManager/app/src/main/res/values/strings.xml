@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Contacts <Manager></Manager></string>
+    <string name="action_settings">Settings</string>
+    <string name="show_additional_fields">Show Additional Fields</string>
+    <string name="hide_additional_fields">Hide Additional Fields</string>
+    <string name="name">Name</string>
+    <string name="email">E-mail</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="job_title">Job Title</string>
+    <string name="company">Company</string>
+    <string name="web_site">Web site</string>
+    <string name="IM">IM</string>
+</resources>
