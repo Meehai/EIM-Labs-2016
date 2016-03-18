@@ -1,6 +1,9 @@
 package lab04.eim.systems.cs.pub.ro.contactsmanager;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ToggleButton;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,13 +68,60 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.save_button:
-                        
+                        Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                        intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+                        if (nameText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.NAME,
+                                    nameText.getText().toString());
+                        }
+                        if (phoneText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.PHONE,
+                                    phoneText.getText().toString());
+                        }
+                        if (emailText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.EMAIL,
+                                    emailText.getText().toString());
+                        }
+                        if (addressText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.POSTAL,
+                                    addressText.getText().toString());
+                        }
+                        if (jobTitleText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,
+                                    jobTitleText.getText().toString());
+                        }
+                        if (companyNameText != null) {
+                            intent.putExtra(ContactsContract.Intents.Insert.COMPANY,
+                                    companyNameText.getText().toString());
+                        }
+                        ArrayList<ContentValues> contactData = new ArrayList<ContentValues>();
+                        if (websiteText != null) {
+                            ContentValues websiteRow = new ContentValues();
+                            websiteRow.put(ContactsContract.Data.MIMETYPE,
+                                    ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE);
+                            websiteRow.put(ContactsContract.CommonDataKinds.Website.URL,
+                                    websiteText.getText().toString());
+                            contactData.add(websiteRow);
+                        }
+                        if (IMText != null) {
+                            ContentValues imRow = new ContentValues();
+                            imRow.put(ContactsContract.Data.MIMETYPE,
+                                    ContactsContract.CommonDataKinds.Im.CONTENT_ITEM_TYPE);
+                            imRow.put(ContactsContract.CommonDataKinds.Im.DATA,
+                                    IMText.getText().toString());
+                            contactData.add(imRow);
+                        }
+                        intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA,
+                                contactData);
+                        startActivity(intent);
+                        break;
                 }
 
             }
         };
         additionalFieldsButton.setOnClickListener(buttonListener);
-
+        saveButton.setOnClickListener(buttonListener);
+        cancelButton.setOnClickListener(buttonListener);
     }
 
     @Override
