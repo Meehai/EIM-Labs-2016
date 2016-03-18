@@ -13,5 +13,6 @@
     <string name="number_0">0</string>
     <string name="star">*</string>
     <string name="pound">#</string>
+    <string name="phone_error">No phone was typed</string>
 
 </resources>

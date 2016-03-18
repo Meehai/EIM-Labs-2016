@@ -13,4 +13,5 @@
     <string name="company">Company</string>
     <string name="web_site">Web site</string>
     <string name="IM">IM</string>
+    <string name="phone_error">No phone was provided by intent</string>
 </resources>

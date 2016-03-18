@@ -166,6 +166,18 @@
             android:layout_marginTop="@dimen/last_row_margin"
             />
 
+        <ImageButton
+            android:id="@+id/save_number_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:src="@drawable/contacts"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/last_row_margin"
+            />
+
     </GridLayout>
 
 </LinearLayout>

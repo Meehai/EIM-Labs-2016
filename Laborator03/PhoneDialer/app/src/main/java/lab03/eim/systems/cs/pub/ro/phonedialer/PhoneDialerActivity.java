@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PhoneDialerActivity extends AppCompatActivity {
 
@@ -101,11 +102,28 @@ public class PhoneDialerActivity extends AppCompatActivity {
             }
         };
 
+        View.OnClickListener saveContactClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = ((EditText) findViewById(R.id.phone_number_edit_text)).getText().toString();
+                Intent intent;
+
+                if (phoneNumber.length() > 0) {
+                    intent = new Intent("ro.pub.cs.systems.eim.lab04.contactsmanager.intent.action.MainActivity");
+                    intent.putExtra("ro.pub.cs.systems.eim.lab04.contactsmanager.PHONE_NUMBER_KEY", phoneNumber);
+                    startActivityForResult(intent, Constants.CONTACTS_MANAGER_REQUEST_CODE);
+                } else {
+                    Toast.makeText(getApplication(), getResources().getString(R.string.phone_error), Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
         for (int i=0; i<Constants.buttonIds.length; i++)
             findViewById(Constants.buttonIds[i]).setOnClickListener(numberButtonClickListener);
 
         findViewById(R.id.backspace_image_button).setOnClickListener(backspaceButtonClickListener);
         findViewById(R.id.hangup_image_button).setOnClickListener(hangupButtonClickListener);
         findViewById(R.id.call_image_button).setOnClickListener(callButtonClickListener);
+        findViewById(R.id.save_number_image_button).setOnClickListener(saveContactClickListener);
     }
 }

@@ -1,5 +1,6 @@
 package lab04.eim.systems.cs.pub.ro.contactsmanager;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -57,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState != null)
             this.changeButtonsVisibility();
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            String phone = intent.getStringExtra("ro.pub.cs.systems.eim.lab04.contactsmanager.PHONE_NUMBER_KEY");
+            if (phone != null) {
+                phoneText.setText(phone);
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.phone_error), Toast.LENGTH_LONG).show();
+            }
+        }
+
         View.OnClickListener buttonListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         changeButtonsVisibility();
                         break;
                     case R.id.cancel_action:
+                        setResult(Activity.RESULT_CANCELED, new Intent());
                         finish();
                         break;
                     case R.id.save_button:
@@ -113,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA,
                                 contactData);
-                        startActivity(intent);
+                        startActivityForResult(intent, Constants.CONTACTS_MANAGER_REQUEST_CODE);
                         break;
                 }
 
@@ -149,5 +162,14 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedState) {
         super.onRestoreInstanceState(savedState);
         this.changeButtonsVisibility();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch(requestCode) {
+            case Constants.CONTACTS_MANAGER_REQUEST_CODE:
+                setResult(resultCode, new Intent());
+                finish();
+                break;
+        }
     }
 }

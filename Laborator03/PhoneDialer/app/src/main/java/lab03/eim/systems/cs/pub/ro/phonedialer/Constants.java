@@ -18,4 +18,6 @@ public class Constants {
             R.id.star_button,
             R.id.pound_button
     };
+
+   public static int CONTACTS_MANAGER_REQUEST_CODE = 1234;
 }
