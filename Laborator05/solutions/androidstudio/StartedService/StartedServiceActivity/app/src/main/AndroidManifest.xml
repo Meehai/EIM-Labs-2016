@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ro.pub.cs.systems.eim.lab05.startedserviceactivity">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="ro.pub.cs.systems.eim.lab05.startedserviceactivity.view.StartedServiceActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--<receiver
+            android:name="ro.pub.cs.systems.eim.lab05.startedserviceactivity.view.StartedServiceBroadcastReceiver">
+            <intent-filter>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.string" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.integer" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.arraylist" />
+            </intent-filter>
+        </receiver>-->
+    </application>
+
+</manifest>
