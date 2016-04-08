@@ -63,9 +63,9 @@ public class ServerFragment extends Fragment {
         public void run() {
             try {
                 Log.v(Constants.TAG, "Connection opened with " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                // TODO: exercise 6a
-                // - get the PrintWriter object in order to write on the socket (use Utilities.getWriter())
-                // - print a line containing the text in serverTextEditText edit text
+                Log.v(Constants.TAG, "Sending to client: " + serverTextEditText.getText().toString());
+                PrintWriter printWriter = Utilities.getWriter(socket);
+                printWriter.println(serverTextEditText.getText().toString());
                 socket.close();
                 Log.v(Constants.TAG, "Connection closed");
             } catch (IOException ioException) {
