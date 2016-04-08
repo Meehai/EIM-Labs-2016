@@ -103,16 +103,69 @@ public class SingleThreadedServerActivity extends AppCompatActivity {
                 while (isRunning) {
                     Log.v(Constants.TAG, "isRunning = " + isRunning);
                     Socket socket = serverSocket.accept();
-                    Log.v(Constants.TAG, "Connection opened with " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    PrintWriter printWriter = Utilities.getWriter(socket);
-                    printWriter.println(serverTextEditText.getText().toString());
-                    socket.close();
-                    Log.v(Constants.TAG, "Connection closed");
+
+                    /* Method to handle the current user */
+                    handleUser(socket);
                 }
             } catch (IOException ioException) {
                 Log.e(Constants.TAG, "An exception has occurred: " + ioException.getMessage());
                 if (Constants.DEBUG) {
                     ioException.printStackTrace();
+                }
+            }
+        }
+
+        void handleUser(Socket socket) throws IOException {
+
+            /* Daca nu facem un thread nou fiecarei conexiuni, o tratam in threadul principal
+            * ceea ce va ingreuna conexiunea unui alt client.
+            * */
+            if(Constants.THREAD_PER_USER == false) {
+                Log.v(Constants.TAG, "Connection opened with " + socket.getInetAddress() + ":" + socket.getLocalPort());
+                PrintWriter printWriter = Utilities.getWriter(socket);
+                try {
+                    Thread.sleep(3000);
+                } catch (Exception e) {
+                    if (Constants.DEBUG) {
+                        e.printStackTrace();
+                    }
+                }
+                printWriter.println(serverTextEditText.getText().toString());
+                socket.close();
+                Log.v(Constants.TAG, "Connection closed");
+            }
+            else {
+                (new CommunicationThread(socket)).start();
+            }
+
+        }
+    }
+
+    private class CommunicationThread extends Thread {
+        private Socket socket;
+
+        public CommunicationThread(Socket socket) {
+            this.socket = socket;
+        }
+
+        public void run() {
+            try {
+                Log.v(Constants.TAG, "Started a new thread.");
+                Log.v(Constants.TAG, "Connection opened with " + socket.getInetAddress() + ":" + socket.getLocalPort());
+                PrintWriter printWriter = Utilities.getWriter(socket);
+                try {
+                    Thread.sleep(3000);
+                } catch (Exception e) {
+                    if (Constants.DEBUG) {
+                        e.printStackTrace();
+                    }
+                }
+                printWriter.println(serverTextEditText.getText().toString());
+                socket.close();
+                Log.v(Constants.TAG, "Connection closed");
+            } catch (IOException e) {
+                if (Constants.DEBUG) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -136,4 +189,40 @@ public class SingleThreadedServerActivity extends AppCompatActivity {
         serverToggleButton.setOnClickListener(serverToggleButtonListener);
     }
 
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        /* Saved instances */
+        if(savedInstanceState != null) {
+            if(savedInstanceState.containsKey("server_edit_text"))
+                serverTextEditText.setText(savedInstanceState.getString("server_edit_text"));
+
+            if(savedInstanceState.containsKey("server_toggle")) {
+                boolean toggled = savedInstanceState.getBoolean("server_toggle");
+                serverToggleButton.setChecked(toggled);
+                /* Also, restart the server. */
+                if(toggled) {
+                    serverThread = new ServerThread();
+                    serverThread.startServer();
+                }
+            }
+        }
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("server_edit_text", serverTextEditText.getText().toString());
+        savedInstanceState.putBoolean("server_toggle", serverToggleButton.isChecked());
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+
+        if(serverThread != null) {
+            serverThread.stopServer();
+            try {
+                serverThread.join();
+            } catch (InterruptedException e) {
+
+            }
+            serverThread = null;
+        }
+    }
 }

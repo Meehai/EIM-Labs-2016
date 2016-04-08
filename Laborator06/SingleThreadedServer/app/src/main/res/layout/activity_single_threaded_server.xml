@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:saveEnabled="false"
         android:inputType="text" />
 
     <ToggleButton
@@ -25,6 +26,7 @@
         android:layout_below="@+id/server_text_edit_text"
         android:textOn="@string/serverOn"
         android:textOff="@string/serverOff"
+        android:saveEnabled="false"
         />
 
 </RelativeLayout>
