@@ -82,7 +82,31 @@ public class ClientFragment extends Fragment {
                     ioException.printStackTrace();
                 }
             }
+
+            String inputString = null, responseString = null;
             PrintStream requestPrintWriter = new PrintStream(requestStream);
+
+            inputString = wordEditText.getText().toString();
+            Log.d(Constants.TAG, "Client's word: " + inputString);
+
+
+            /* Daca avem un prefix de la server, trebuie sa ne asiguram ca mesajul nostru este corect. */
+            if(mostRecentValidPrefix.length() == 2) {
+                if(!inputString.startsWith(mostRecentValidPrefix)) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), "Word doesn't start with " +
+                                    "prefix: " + mostRecentValidPrefix, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    return;
+                }
+            }
+
+            /* Altfel, vom trimite cuvantul catre server */
+            requestPrintWriter.println(inputString);
+            mostRecentWordSent = inputString.toString();
 
             try {
                 responseStream = socket.getInputStream();
@@ -93,8 +117,35 @@ public class ClientFragment extends Fragment {
                 }
             }
             BufferedReader responseReader = new BufferedReader(new InputStreamReader(responseStream));
+            try {
+                responseString = responseReader.readLine();
+            } catch (Exception e) {
+                Log.d(Constants.TAG, "Exception: " + e.getMessage());
+                return;
+            }
 
-            // TODO: exercise 7b
+            final String serverString = responseString;
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    clientHistoryTextView.setText(clientHistoryTextView.getText().toString() + "\nFrom Server: " + serverString);
+                }
+            });
+
+            final String line;
+            if(responseString.startsWith("WIN")) {
+                Log.d(Constants.TAG, "Received WIN from Server.");
+                line = "Received " + responseString + "from Server.";
+            } else if(responseString.startsWith("LOSS")) {
+                Log.d(Constants.TAG, "Received WIN from Server.");
+                line = "Received" + responseString + "from Server.";
+            }
+            else {
+                Log.d(Constants.TAG, "Serverul mi-a trimis cuvantul: " + responseString + " Prefix: " + responseString.substring(
+                        responseString.length()-2, responseString.length()));
+                mostRecentValidPrefix = responseString.substring(responseString.length()-2, responseString.length());
+                line = "Received: " + responseString.toString();
+            }
 
         }
     }

@@ -43,6 +43,7 @@ public class ServerFragment extends Fragment {
         }
 
         public void run() {
+            Log.d(Constants.TAG, "[SERVER] 1");
             if (socket == null) {
                 return;
             }
@@ -68,11 +69,51 @@ public class ServerFragment extends Fragment {
             }
             BufferedReader requestReader = new BufferedReader(new InputStreamReader(requestStream));
             PrintStream responsePrintWriter = new PrintStream(responseStream);
+            String line = null;
 
             while (isRunning) {
 
-                // TODO: exercise 7a
+                Log.d(Constants.TAG, "[SERVER] 2");
 
+                // TODO: exercise 7a
+                try {
+                    line = requestReader.readLine();
+                    Log.d(Constants.TAG, "[SERVER] 3");
+                } catch (IOException e) {
+                    Log.e(Constants.TAG, "An exception has occurred: " + e.getMessage());
+                }
+
+                Log.d(Constants.TAG, "Line read:" + line);
+                if(line.equals(Constants.END_GAME)){
+                    Log.d(Constants.TAG, "Server read end of the game, closing");
+                    isRunning = false;
+                    try {
+                        socket.close();
+                    } catch (Exception e) {
+                        Log.d(Constants.TAG, "Exceptie: " + e.getMessage());
+                    }
+                }
+
+                final String receivedString = "From client: " + line;
+                serverHistoryTextView.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        serverHistoryTextView.setText(serverHistoryTextView.getText() + "\n" + receivedString);
+                    }
+                });
+
+                if(Utilities.wordValidation(line)) {
+                    List potentialWords = Utilities.getWordListStartingWith(
+                            line.substring(line.length()-2, line.length()));
+                    if(potentialWords.size() == 0)
+                        responsePrintWriter.println("WIN");
+                    else
+                        responsePrintWriter.println(potentialWords.get(new Random().nextInt(potentialWords.size())));
+                }
+                else {
+                    responsePrintWriter.println("LOSS - Invalid Word");
+                }
             }
             try {
                 socket.close();
