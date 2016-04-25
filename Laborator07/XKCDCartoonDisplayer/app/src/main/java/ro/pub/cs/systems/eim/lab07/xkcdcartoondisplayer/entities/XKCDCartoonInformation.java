@@ -55,4 +55,8 @@ public class XKCDCartoonInformation {
         return nextCartoonUrl;
     }
 
+    public String toString() {
+        return "Url: " + getCartoonUrl() + "; Title: " + getCartoonTitle() + "; next url: " + getNextCartoonUrl() + "; previous url: " + getPreviousCartoonUrl() + "\n";
+    }
+
 }

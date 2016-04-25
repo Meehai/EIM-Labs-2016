@@ -3,7 +3,7 @@ package ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.general;
 public interface Constants {
     final public static boolean DEBUG                 = true;
 
-    final public static String  TAG                   = "Xkcd Cartoon Displayer";
+    final public static String  TAG                   = "XkcdCartoonDisplayer";
 
     final public static String  XKCD_INTERNET_ADDRESS = "http://www.xkcd.com";
 

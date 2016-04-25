@@ -1,16 +1,35 @@
 package ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.view;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.DefaultResponseParser;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
+
 import ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.R;
 import ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.entities.XKCDCartoonInformation;
 import ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.general.Constants;
+import ro.pub.cs.systems.eim.lab07.xkcdcartoondisplayer.network.VolleyController;
 
 public class XKCDCartoonDisplayerActivity extends AppCompatActivity {
 
@@ -37,7 +56,7 @@ public class XKCDCartoonDisplayerActivity extends AppCompatActivity {
 
         @Override
         protected XKCDCartoonInformation doInBackground(String... urls) {
-            XKCDCartoonInformation xkcdCartoonInformation = new XKCDCartoonInformation();
+            final XKCDCartoonInformation xkcdCartoonInformation = new XKCDCartoonInformation();
 
             // TODO: exercise 5a)
             // 1. obtain the content of the web page (whose Internet address is stored in urls[0])
@@ -45,6 +64,16 @@ public class XKCDCartoonDisplayerActivity extends AppCompatActivity {
             // - create an instance of a HttpGet object
             // - create an instance of a ResponseHandler object
             // - execute the request, thus obtaining the web page source code
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet(urls[0]);
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            String content = null;
+            try {
+                content = httpClient.execute(httpGet, responseHandler);
+            } catch (IOException e ){
+                e.printStackTrace();
+                return null;
+            }
 
             // 2. parse the web page source code
             // - cartoon title: get the tag whose id equals "ctitle"
@@ -63,6 +92,37 @@ public class XKCDCartoonDisplayerActivity extends AppCompatActivity {
             //   * get the href attribute of the tag
             //   * prepend the value with the base url: http://www.xkcd.com
             //   * attach the next button a click listener with the address attached
+            Document document = Jsoup.parse(content);
+            Element htmlTag = document.child(0);
+
+            Element divTagIdCtitle = htmlTag.getElementsByAttributeValue(Constants.ID_ATTRIBUTE, Constants.CTITLE_VALUE).first();
+            String titleText = divTagIdCtitle.ownText();
+            xkcdCartoonInformation.setCartoonTitle(titleText);
+
+            // cartoon content
+            Element divTagIdComic = htmlTag.getElementsByAttributeValue(Constants.ID_ATTRIBUTE, Constants.COMIC_VALUE).first();
+            String cartoonInternetAddress = divTagIdComic.getElementsByTag(Constants.IMG_TAG).attr(Constants.SRC_ATTRIBUTE);
+            String cartoonUrl = Constants.HTTP_PROTOCOL + cartoonInternetAddress;
+            xkcdCartoonInformation.setCartoonUrl(cartoonUrl);
+
+            // cartoon links urls
+            Element aTagRelPrev = htmlTag.getElementsByAttributeValue(Constants.REL_ATTRIBUTE, Constants.PREVIOUS_VALUE).first();
+            String previousCartoonId = aTagRelPrev.attr(Constants.HREF_ATTRIBUTE);
+            String previousCartoonInternetAddress = Constants.XKCD_INTERNET_ADDRESS + aTagRelPrev.attr(Constants.HREF_ATTRIBUTE);
+            if(!previousCartoonId.equals("#"))
+                xkcdCartoonInformation.setPreviousCartoonUrl(previousCartoonInternetAddress);
+            else
+                xkcdCartoonInformation.setPreviousCartoonUrl(null);
+
+            Element aTagRelNext = htmlTag.getElementsByAttributeValue(Constants.REL_ATTRIBUTE, Constants.NEXT_VALUE).first();
+            String nextCartoonId = aTagRelNext.attr(Constants.HREF_ATTRIBUTE);
+            String nextCartoonInternetAddress = Constants.XKCD_INTERNET_ADDRESS + aTagRelNext.attr(Constants.HREF_ATTRIBUTE);
+            if(!nextCartoonId.equals("#"))
+                xkcdCartoonInformation.setNextCartoonUrl(nextCartoonInternetAddress);
+            else
+                xkcdCartoonInformation.setNextCartoonUrl(null);
+
+            Log.d(Constants.TAG, xkcdCartoonInformation.toString());
 
             return xkcdCartoonInformation;
         }
@@ -70,13 +130,51 @@ public class XKCDCartoonDisplayerActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(XKCDCartoonInformation xkcdCartoonInformation) {
 
-            // TODO: exercise 5b)
+            // exercise 5b)
             // map each member of xkcdCartoonInformation object to the corresponding widget
             // cartoonTitle -> xkcdCartoonTitleTextView
             // cartoonUrl -> xkcdCartoonUrlTextView
             // based on cartoonUrl fetch the bitmap using Volley (using an ImageRequest object added to the queue)
             // and put it into xkcdCartoonImageView
             // previousCartoonUrl, nextCartoonUrl -> set the XKCDCartoonUrlButtonClickListener for previousButton, nextButton
+
+            xkcdCartoonUrlTextView.setText(xkcdCartoonInformation.getCartoonTitle());
+            xkcdCartoonUrlTextView.setText(xkcdCartoonInformation.getCartoonUrl());
+
+            if(xkcdCartoonInformation.getCartoonUrl() != null) {
+                Response.Listener<Bitmap> responseListener = new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        xkcdCartoonImageView.setImageBitmap(bitmap);
+                    }
+                };
+                Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(Constants.TAG, error.toString());
+                    }
+                };
+                ImageRequest cartoonRequest = new ImageRequest(xkcdCartoonInformation.getCartoonUrl(), responseListener, 0, 0, null,
+                        Bitmap.Config.RGB_565, errorListener);
+                VolleyController.getInstance(xkcdCartoonImageView.getContext()).addToRequestQueue(cartoonRequest);
+            }
+
+            String previousCartoonUrl = xkcdCartoonInformation.getPreviousCartoonUrl();
+            if (previousCartoonUrl != null) {
+                previousButton.setOnClickListener(new XKCDCartoonUrlButtonClickListener(previousCartoonUrl));
+                previousButton.setEnabled(true);
+            }
+            else {
+                previousButton.setEnabled(false);
+            }
+            String nextCartoonUrl = xkcdCartoonInformation.getNextCartoonUrl();
+            if (nextCartoonUrl != null) {
+                nextButton.setOnClickListener(new XKCDCartoonUrlButtonClickListener(nextCartoonUrl));
+                nextButton.setEnabled(true);
+            }
+            else {
+                nextButton.setEnabled(false);
+            }
 
         }
     }
