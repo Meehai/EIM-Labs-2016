@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="unspecified"><source path="/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/exploded-aar/ngnsip/androidngnstack/unspecified/assets"/></dataSet><dataSet config="main"><source path="/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/assets"/></dataSet><dataSet config="debug"><source path="/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/debug/assets"/></dataSet></merger>

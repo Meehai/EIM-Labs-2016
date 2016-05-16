@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">ngnsip</string>
+    <string name="calling">Calling</string>
+    <string name="chat">Chat</string>
+    <string name="codes">09#</string>
+    <string name="doubango_revision">687</string>
+    <string name="dtmf">DTMF</string>
+    <string name="hang_up_call">Hang Up Call</string>
+    <string name="in_call">In Call</string>
+    <string name="incoming_call">Incoming Call</string>
+    <string name="make_call">Make Call</string>
+    <string name="no_call">No Call</string>
+    <string name="register">Register</string>
+    <string name="registered">Registered</string>
+    <string name="send">Send</string>
+    <string name="test_number">sip:thetestcall@getonsip.com</string>
+    <string name="unregister">Unregister</string>
+    <string name="unregistered">Unregistered</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

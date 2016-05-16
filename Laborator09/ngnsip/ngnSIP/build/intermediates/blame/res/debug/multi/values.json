@@ -1,0 +1,429 @@
+[
+    {
+        "outputFile": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 89,
+                        "endColumn": 57,
+                        "endOffset": 142
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 55,
+                    "endOffset": 164
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 147,
+                        "endColumn": 55,
+                        "endOffset": 198
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 169,
+                    "endColumn": 52,
+                    "endOffset": 217
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 100,
+                        "endColumn": 52,
+                        "endOffset": 148
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 222,
+                    "endColumn": 43,
+                    "endOffset": 261
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 43,
+                        "endOffset": 95
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 266,
+                    "endColumn": 43,
+                    "endOffset": 305
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 568,
+                        "endColumn": 43,
+                        "endOffset": 607
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 310,
+                    "endColumn": 37,
+                    "endOffset": 343
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 788,
+                        "endColumn": 37,
+                        "endOffset": 821
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 348,
+                    "endColumn": 37,
+                    "endOffset": 381
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 750,
+                        "endColumn": 37,
+                        "endOffset": 783
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 386,
+                    "endColumn": 49,
+                    "endOffset": 431
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/exploded-aar/ngnsip/androidngnstack/unspecified/res/values/values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 110,
+                        "endColumn": 49,
+                        "endOffset": 155
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 436,
+                    "endColumn": 37,
+                    "endOffset": 469
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 712,
+                        "endColumn": 37,
+                        "endOffset": 745
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 474,
+                    "endColumn": 53,
+                    "endOffset": 523
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 470,
+                        "endColumn": 53,
+                        "endOffset": 519
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 528,
+                    "endColumn": 43,
+                    "endOffset": 567
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 612,
+                        "endColumn": 43,
+                        "endOffset": 651
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 572,
+                    "endColumn": 55,
+                    "endOffset": 623
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 656,
+                        "endColumn": 55,
+                        "endOffset": 707
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 628,
+                    "endColumn": 47,
+                    "endOffset": 671
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 422,
+                        "endColumn": 47,
+                        "endOffset": 465
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 676,
+                    "endColumn": 43,
+                    "endOffset": 715
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 524,
+                        "endColumn": 43,
+                        "endOffset": 563
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 720,
+                    "endColumn": 45,
+                    "endOffset": 761
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 153,
+                        "endColumn": 45,
+                        "endOffset": 194
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 766,
+                    "endColumn": 49,
+                    "endOffset": 811
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 249,
+                        "endColumn": 49,
+                        "endOffset": 294
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 816,
+                    "endColumn": 37,
+                    "endOffset": 849
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 826,
+                        "endColumn": 37,
+                        "endOffset": 859
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 854,
+                    "endColumn": 68,
+                    "endOffset": 918
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 353,
+                        "endColumn": 68,
+                        "endOffset": 417
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 923,
+                    "endColumn": 49,
+                    "endOffset": 968
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 199,
+                        "endColumn": 49,
+                        "endOffset": 244
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 973,
+                    "endColumn": 53,
+                    "endOffset": 1022
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 299,
+                        "endColumn": 53,
+                        "endOffset": 348
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1027,
+                    "endLine": 28,
+                    "endColumn": 12,
+                    "endOffset": 1313
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 186,
+                        "endLine": 12,
+                        "endColumn": 12,
+                        "endOffset": 472
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 1318,
+                    "endLine": 31,
+                    "endColumn": 12,
+                    "endOffset": 1473
+                },
+                "from": {
+                    "file": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/values/styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 510,
+                        "endLine": 17,
+                        "endColumn": 12,
+                        "endOffset": 665
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/res/merged/debug/layout/activity_voice_call.xml",
+        "source": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/layout/activity_voice_call.xml"
+    },
+    {
+        "merged": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/res/merged/debug/layout/activity_instant_messaging.xml",
+        "source": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/layout/activity_instant_messaging.xml"
+    }
+]

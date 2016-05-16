@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/src/main/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/res/merged/debug/drawable-mdpi-v4/icon.png",
+        "source": "/home/mihai/Work/Facultate/EIM/EIM-Labs-2016/Laborator09/ngnsip/ngnSIP/build/intermediates/exploded-aar/ngnsip/androidngnstack/unspecified/res/drawable-mdpi-v4/icon.png"
+    }
+]
