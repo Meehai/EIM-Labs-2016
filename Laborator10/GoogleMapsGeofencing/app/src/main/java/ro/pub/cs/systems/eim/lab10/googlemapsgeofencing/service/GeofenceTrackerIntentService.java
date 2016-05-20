@@ -9,6 +9,10 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
+
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingEvent;
 
 import ro.pub.cs.systems.eim.lab10.R;
 import ro.pub.cs.systems.eim.lab10.googlemapsgeofencing.general.Constants;
@@ -22,14 +26,35 @@ public class GeofenceTrackerIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // TODO: exercise 9
+        // exercise 9
         // obtain GeofencingEvent from the calling intent, using GeofencingEvent.fromIntent(intent);
+        GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
         // check whether the GeofencingEvent hasError(), log it and exit the method
+        if(geofencingEvent.hasError()) {
+            Log.d(Constants.TAG, "Geofencing error. " + geofencingEvent.getErrorCode());
+            return;
+        }
+
         // get the geofence transition using getGeofenceTransition() method
+        int geofenceTransition = geofencingEvent.getGeofenceTransition();
+
         // build a detailed message
+        StringBuilder message = new StringBuilder();
+        message.append("Transition Type: ");
         // - include the transition type
+        if(geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER)
+            message.append("Enter geofence area\n");
+        else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT)
+            message.append("Exit geofence area\n");
+        else
+            message.append("Unknown\n");
+
         // - include the request identifier (getRequestId()) for each  geofence that triggered the event (getTriggeringGeofences())
+        for (Geofence g : geofencingEvent.getTriggeringGeofences()) {
+            message.append("Request id = " + g.getRequestId() + "\n");
+        }
         // send a notification with the detailed message (sendNotification())
+        sendNotification(message.toString());
     }
 
     private void sendNotification(String notificationDetails) {

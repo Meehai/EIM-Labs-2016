@@ -249,22 +249,56 @@ public class GoogleMapsActivity extends AppCompatActivity implements GoogleApiCl
     }
 
     protected void startLocationUpdates() {
-        // TODO exercise 7a
-        // invoke the requestLocationUpdates() method from FusedLocationProviderApi class
-        // enable the locationUpdatesStatus
-        // enable the current location on Google Map
-        // update the locationUpdatesStatusButton text & color
-        // navigate to current position (lastLocation)
-        // disable the latitudeEditText, longitudeEditText, navigateToLocationButton widgets
+        // exercise 7a
+        try {
+            // invoke the requestLocationUpdates() method from FusedLocationProviderApi class
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+
+            // enable the locationUpdatesStatus
+            locationUpdatesStatus = true;
+            // enable the current location on Google Map
+            googleMap.setMyLocationEnabled(true);
+
+            // update the locationUpdatesStatusButton text & color
+            locationUpdatesStatusButton.setText(getResources().getString(R.string.stop_location_updates));
+            locationUpdatesStatusButton.setBackground(getResources().getDrawable(R.color.green));
+
+            // navigate to current position (lastLocation)
+            if (lastLocation != null) {
+                navigateToLocation(lastLocation);
+            }
+
+            // disable the latitudeEditText, longitudeEditText, navigateToLocationButton widgets
+            latitudeEditText.setEnabled(false);
+            longitudeEditText.setEnabled(false);
+            navigateToLocationButton.setEnabled(false);
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+
     }
 
     protected void stopLocationUpdates() {
-        // TODO exercise 7b
-        // invoke the removeLocationUpdates() method from FusedLocationProviderApi class
-        // disable the locationUpdatesStatus
-        // disable the current location on Google Map
-        // update the locationUpdatesStatusButton text & color
-        // enable the latitudeEditText, longitudeEditText, navigateToLocationButton widgets	and reset their content
+        // exercise 7b
+        try {
+            // invoke the removeLocationUpdates() method from FusedLocationProviderApi class
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+            // disable the locationUpdatesStatus
+            locationUpdatesStatus = false;
+            // disable the current location on Google Map
+            googleMap.setMyLocationEnabled(false);
+            // update the locationUpdatesStatusButton text & color
+            locationUpdatesStatusButton.setText(getResources().getString(R.string.start_location_updates));
+            locationUpdatesStatusButton.setBackground(getResources().getDrawable(R.color.red));
+
+            // enable the latitudeEditText, longitudeEditText, navigateToLocationButton widgets	and reset their content
+            latitudeEditText.setEnabled(true);
+            longitudeEditText.setEnabled(true);
+            navigateToLocationButton.setEnabled(true);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
